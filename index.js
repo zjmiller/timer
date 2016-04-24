@@ -79,6 +79,7 @@ function startTimer(){
           arcPath.attr('d', arc);
           d3.select('#seconds-left').text(0 + ' s');
           timerInUse = false;
+          disableStartPauseBtn();
           return;
         } else {
           let proportionCompleted = (currentTimestamp - startTimestamp) / (endTimestamp - startTimestamp);
@@ -96,6 +97,10 @@ function startTimer(){
   nextCycle();
 }
 
+function disableStartPauseBtn(){
+  d3.select('#start-pause-btn').attr('disabled', true);
+}
+
 function resetTimer(){
   timerInUse = false;
   isPaused = false;
@@ -106,6 +111,7 @@ function resetTimer(){
   d3.select('#seconds-left').text('');
   d3.select('#start-pause-btn').html('Start');
   d3.select('#input-seconds').attr('disabled', null);
+  d3.select('#start-pause-btn').attr('disabled', null);
   d3.select('#input-seconds').property('value', '')[0][0].focus();
 }
 
